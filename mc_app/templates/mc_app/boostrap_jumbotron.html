@@ -1,0 +1,27 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+<h1>Maine Codes</h1>
+  <p>A gallery of CBHS coders's work</p>
+
+<!-- There is no perfect way to manage the height of a jumbotron image -->
+  <div class="jumbotron">
+    <h1 class="display-4">Maine Codes</h1>
+    <p class="lead">A gallery of CBHS coders's work</p>
+    <p>This is not a lead, just a regular paragraph</p>
+    <img src="{% static 'mc_app/images/crew_winter_hike.jpeg' %}" class="d-block w-100" alt="McNally Crew hiking through the snowy woods">
+  </div>
+  <!-- This seems like the best. It resizes the image, keeps it centered. Trick is setting the appropriate minimum height. -->
+  <div class="jumbotron" style="background: url('{% static "mc_app/images/crew_winter_hike.jpeg" %}') center center / cover no-repeat; min-height: 400px">
+    <h1 class="display-4">Maine Codes</h1>
+    <p class="lead">A gallery of CBHS coders's work</p>
+    <p>This is not a lead, just a regular paragraph</p>
+  </div>
+
+  <div class="jumbotron" style="background-image: url('{% static "mc_app/images/crew_winter_hike.jpeg" %}'); background-size: cover; background-height: 100%; min-height: 400px;">
+    <h1 class="display-4">Maine Codes</h1>
+    <p class="lead">A gallery of CBHS coders's work</p>
+    <p>This is not a lead, just a regular paragraph</p>
+  </div>
+
+{% endblock content %}

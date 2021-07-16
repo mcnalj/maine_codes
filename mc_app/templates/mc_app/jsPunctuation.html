@@ -1,0 +1,28 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+<div class="card mx-auto border-dark mt-5" style="width: 80%">
+  <div class="card-header" id="topic">PUNCTUATION</div>
+  <div class="card-body text-center">
+    <h4 class="card-title" id="question">Which one of these words is surrounded by quotation marks?</h4>
+
+  <ul class="list-group list-group-flush text-center" style="font-size: 20pt">
+    <li class="list-group-item">a. <span id="answer_a" class="code" style="font-family: monospace;">(quotes)</span></li>
+    <li class="list-group-item">b. <span id="answer_b" class="code" style="font-family: monospace;">"quotes"</span></li>
+    <li class="list-group-item">c. <span id="answer_c" class="code" style="font-family: monospace;">[quotes]</span></li>
+    <li class="list-group-item">d. <span id="answer_d" class="code" style="font-family: monospace;">{quotes}</span></li>
+  </ul>
+  </div>
+  <form id="answer_form" class="card-footer mx-auto" style="width: 100%;" method="post">
+    {% csrf_token %}
+    <button href="#" class="btn btn-primary" type="submit" style="width: 100%;">NEXT</button>
+  </form>
+</div>
+<script>
+    questions = {{questions|safe}}
+</script>
+    <script src="{% static 'mc_app/javascript/answer_questions.js' %}"</script>
+
+
+
+{% endblock content %}
