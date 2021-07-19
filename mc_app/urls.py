@@ -8,5 +8,7 @@ urlpatterns = [
     #Home page
     path('', views.index, name='index'),
     # JavaScript Punctuation Quiz page.
-    path('jsPunctuation/', views.jsPunctuation, name='jsPunctuation')
+    path('jsPunctuation/', views.jsPunctuation, name='jsPunctuation'),
+    # Simple derivatives drill using MathJax.
+    path('derivatives/', views.derivatives, name='derivatives'),
 ]

@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <!--MathJax-->
+    <script type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Custom Syles -->
@@ -21,6 +23,7 @@
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="{% url 'mc_app:jsPunctuation' %}">Quizzes</a>
+          <a class="nav-item nav-link" href="{% url 'mc_app:derivatives' %}">Derivatives</a>
           <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Instruction</a>
         </div>
       </div>
