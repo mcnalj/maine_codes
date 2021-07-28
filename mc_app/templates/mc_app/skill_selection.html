@@ -1,0 +1,41 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+<div class="p-3">
+<h2>Derivative City</h2>
+<h4>pick a skill to practice. . .</h4>
+</div>
+<div id="questionCard" class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header" id="topic">BASIC DERIVATIVES</div>
+  <div class="card-body">
+    <form action="{% url 'mc_app:skill_selection' %}" id="answer_form" style="width: 100%;" method="POST">
+      {% csrf_token %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="basicDerivatives" value="basicDerivatives" checked>
+        <label class="form-check-label" for="basicDerivatives">keep it simple</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeCoefficient" value="negativeCoefficients">
+        <label class="form-check-label" for="negativeCoefficients">add negative coefficients</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalCoefficient" value="fractionalCoefficients">
+        <label class="form-check-label" for="freactionalCoefficients">add fractional coefficients</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="basicMix" value="basicMix">
+        <label class="form-check-label" for="basicMix">mix it up</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="advancedMix" value="advancedMix">
+        <label class="form-check-label" for="advancedMix">give me the advanced mix</label>
+      </div>
+      <br>
+
+      <button id="skillButton" class="btn btn-primary" type="submit" style="width: 100%;">GO</button>
+    </form>
+  </div>
+</div>
+
+
+{% endblock content %}

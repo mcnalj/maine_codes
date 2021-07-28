@@ -1,0 +1,30 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+
+<div id="questionCard" class="card mx-auto border border-dark mt-5" style="width: 80%">
+  <div class="card-header" id="topic">FRACTIONAL COEFFICIENTS</div>
+  <div class="card-body text-center">
+    <h4 class="card-title" id="question">Find the derivative of the given function:</h4>
+    </br>
+    <div id="mathEquation" style="font-size: 2rem;">\(f(x) = 6x^2\)</div>
+    </br>
+    </br>
+    <form id="answer_form" class="card-footer mx-auto" style="width: 100%;" method="post">
+      {% csrf_token %}
+      </br>
+      <label for="answer" style="font-size: 2rem;">\(f'(x) = \)</label>
+      <input type='text' id="answer" name="answer" onfocus="this.placeholder=''" style="font-size: 2rem; text-align: center;" placeholder="3x^2" autocomplete="off">
+      </br>
+      <p id="answerMessage" style="font-size: .75em; color:red; visibility:hidden;">Correct!</p>
+      </br>
+      <button id="answerButton" href="#" class="btn btn-primary" type="submit" style="width: 100%;">SUBMIT</button>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'mc_app/javascript/derivatives.js' %}"></script>
+
+})
+
+{% endblock content %}
