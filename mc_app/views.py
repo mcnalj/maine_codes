@@ -3,6 +3,8 @@ from django.core import serializers
 
 from .models import JavaScriptPunctuation
 
+from .forms import SelectSkillsForm
+
 def index(request):
     """The home page for Maine codes."""
     return render(request, 'mc_app/index.html')
@@ -30,8 +32,25 @@ def jsPunctuation(request):
     """The page for quizzes."""
     return render(request, 'mc_app/jsPunctuation.html')
 
+def skill_selection(request):
+    if request.method != 'POST':
+        return render(request, 'mc_app/skill_selection.html')
+    else:
+        form = SelectSkillsForm(data=request.POST)
+        if form.is_valid():
+            selection = form.cleaned_data["skillRadios"]
+            context = {'selection': selection}
+        return render(request, 'mc_app/derivatives.html', context )
+
+
 def derivatives(request):
     print("Derivatives works!")
     functions = "first";
     context = {'functions': functions}
     return render(request, 'mc_app/derivatives.html', context)
+
+def fractionalCoefficients(request):
+    print("FC works!")
+    functions = "first";
+    context = {'functions': functions}
+    return render(request, 'mc_app/fractionalCoefficients.html', context)

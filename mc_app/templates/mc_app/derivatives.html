@@ -14,7 +14,7 @@
       {% csrf_token %}
       </br>
       <label for="answer" style="font-size: 2rem;">\(f'(x) = \)</label>
-      <input type='text' id="answer" name="answer" onfocus="this.placeholder=''" style="font-size: 2rem; text-align: center;" placeholder="3x^2" autocomplete="off">
+      <input type='text' class="form-control" id="answer" name="answer" onfocus="this.placeholder=''" style="font-size: 2rem; text-align: center;" placeholder="3x^2" autocomplete="off">
       </br>
       <p id="answerMessage" style="font-size: .75em; color:red; visibility:hidden;">Correct!</p>
       </br>
@@ -22,7 +22,37 @@
     </form>
   </div>
 </div>
+<script>
+  var negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients;
+  setEquationParameters("{{selection}}");
 
+
+  function setEquationParameters(selection){
+    console.log("This is selection in setEquation params")
+    console.log(selection);
+    negativeCoefficient = 0;
+    fractionalCoefficient = 0;
+    negativeExponent = 0;
+    fractionalExponent = 0;
+    if (selection == 'negativeCoefficients') {
+      negativeCoefficients = 1;
+    }
+    if (selection == 'fractionalCoefficients') {
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'basicMix') {
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'advancedMix') {
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+      negativeExponents = 1;
+      fractionalExponents = 1;
+    }
+    return [negativeCoefficients, fractionalCoefficients, negativeExponents, fractionalExponents];
+  }
+</script>
 <script src="{% static 'mc_app/javascript/derivatives.js' %}"></script>
 
 })
