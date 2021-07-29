@@ -1,38 +1,56 @@
 $(function(){
   var equation, answerEquation, coefficient, coefficientNumerator, coefficientDenominator, exponent, exponentNumerator, exponentDenominator, numerator, denominator, formattedCoefficient, acceptableAnswer, acceptableAnswerReduced, answeredCorrectly, negativeCoefficient, fractionalCoefficient, negativeExponent, fractionalExponent;
-  console.log(negativeCoefficient);
+  skillFields.timesAttempted = skillFields.timesAttempted + 1;
+  var streak = 0;
+  var correctAnswers = 0;
+  var masteredSkill, skillMaxCorrect
+  [masteredSkill, skillMaxCorrect] = getMasteryFieldsForProgress()
   [equation, exponentNumerator, exponentDenominator, coefficientNumerator, coefficientDenominator] = setMasterEquation();
 
   document.getElementById("answer_form").onsubmit = function(e){
     e.preventDefault();
     answeredCorrectly = false;
+    var serializedData = $(this).serializeArray();
     if (document.getElementById("answerButton").innerText == 'SUBMIT') {
       [acceptableAnswer, acceptableAnswerReduced] = getAnswerMaster(exponentNumerator, exponentDenominator, coefficientNumerator, coefficientDenominator);
-      console.log("Acceptable Answer Reduced");
-      console.log(acceptableAnswerReduced)
-      console.log("Acceptable Answer");
-      console.log(acceptableAnswer)
       var message = "";
       var messageColor = "green";
       answer = document.getElementById("answer").value.trim();
-      console.log("answer: " + answer);
       // Removes interior whitespaces by splitting at a space and joining with nothing in-between.
       answer = answer.split(" ").join("");
       // If they type in anything other than numbers, and x and a ^ . . .
       if (answer.match(/[^-x0-9^/()]/)) {
-        console.log("in the answer match weirdness")
-        message = "Please enter in the form 1/3x^2 using only numbers, /, x and ^.";
+        console.log("got to the message")
+        message = "Please enter in the form 5x^2 or -1/(3x^2) using only numbers, /, x, -, and ^.";
         messageColor = "red";
-        // Need to make this message appear.
+        document.getElementById("answerMessage").innerHTML = message;
+        document.getElementById("answerMessage").style.color = messageColor;
+        document.getElementById("answerMessage").style.visibility = "visible";
       } else {
         answeredCorrectly = compareAnswerWithEnteredAnswer(acceptableAnswer, acceptableAnswerReduced, answer);
-        // "Stopped here on Monday night."
-        console.log("answeredCorrectly")
-        console.log(answeredCorrectly)
         if (answeredCorrectly) {
+          streak = streak + 1;
+          if (streak > skillFields.longestStreak){
+            skillFields.longestStreak = streak
+          }
+          if (streak > progressFields.longestStreak) {
+            progressFields.longestStreak = streak
+          }
+          correctAnswers = correctAnswers + 1
+          progressFields.totalQuestionsAnsweredCorrectly = progressFields.totalQuestionsAnsweredCorrectly + 1
+          if (correctAnswers > skillMaxCorrect) {
+            skillMaxCorrect = skillMaxCorrect + 1
+          }
+//          if (correctAnswers >= skillFields.numberNeededForMastery && streak >= skillFields.consecutiveNeededForMastery){
+          if (correctAnswers >= 2) {
+            masteredRoutine(serializedData);
+          } else {
           correctAnswerUIChanges();
+        }
+
         } else {
           wrongAnswerUIChanges();
+          streak = 0;
         }
       }
     } else { // This is a NEXT, not a SUBMIT
@@ -40,16 +58,78 @@ $(function(){
       answerEquation = "";
       initializeUIForNextQuestion();
       setMasterEquation();
+      skillFields.totalQuestionsAsked = skillFields.totalQuestionsAsked + 1;
+      progressFields.totalQuestionsAttempted = progressFields.totalQuestionsAttempted + 1
     }
   }
 
-  // function setEquationParameters(){
-  //   negativeCoefficient = 1;
-  //   fractionalCoefficient = 1;
-  //   negativeExponent = 1;
-  //   fractionalExponent = 1;
-  //   return [negativeCoefficient, fractionalCoefficient, negativeExponent, fractionalExponent];
-  // }
+  function masteredRoutine(serializedData){
+    skillFields.timesMastered = skillFields.timesMastered + 1;
+    skillFields.totalQuestionsAnsweredCorrectly = skillFields.totalQuestionsAnsweredCorrectly + correctAnswers;
+    skillFields.percentCorrect = parseInt((skillFields.totalQuestionsAnsweredCorrectly/skillFields.totalQuestionsAsked) * 100)
+    serializedData.push({name: "skillName", value: skillFields["skillName"]});
+    serializedData.push({name: "timesAttempted", value: skillFields["timesAttempted"]});
+    serializedData.push({name: "timesMastered", value: skillFields["timesMastered"]});
+    serializedData.push({name: "totalQuestionsAsked", value: skillFields["totalQuestionsAsked"]});
+    serializedData.push({name: "totalQuestionsAnsweredCorrectly", value: skillFields["totalQuestionsAnsweredCorrectly"]});
+    serializedData.push({name: "longestStreak", value: skillFields["longestStreak"]});
+    serializedData.push({name: "percentCorrect", value: skillFields["percentCorrect"]});
+    if (!masteredSkill) {
+      masteredSkill = true
+      var masteryName = "mastered" + skillFields["skillName"]
+      serializedData.push({name: masteryName, value: masteredSkill});
+    }
+    progressFields["totalSkillsMastered"] = progressFields["totalSkillsMastered"] + 1
+    serializedData.push({name: "totalSkillsMastered", value: progressFields["totalSkillsMastered"]});
+    serializedData.push({name: "progressTotalQuestionsAttempted", value: progressFields["totalQuestionsAttempted"]});
+    serializedData.push({name: "progressTotalQuestionsAnsweredCorrectly", value: progressFields["totalQuestionsAnsweredCorrectly"]});
+    serializedData.push({name: "progressLongestStreak", value: progressFields["longestStreak"]});
+    progressFields.percentCorrect = parseInt((progressFields.totalQuestionsAnsweredCorrectly/progressFields.totalQuestionsAttempted) * 100)
+    serializedData.push({name: "progressPercentCorrect", value: progressFields["percentCorrect"]});
+
+    serializedData.push({name: "progressMaxCorrect", value: skillMaxCorrect});
+
+    jQuery.ajax({
+      type: 'POST',
+      url: '/masteredRoutine/',
+      data: $.param(serializedData),
+      success: function(response) {
+        console.log("It worked");
+        streak = 0;
+        correctAnswers = 0;
+        //go to skill choice, show something on UI
+      },
+      error: function(response) {
+        console.log("There was an error");
+      }
+    });
+  }
+
+  function getMasteryFieldsForProgress(){
+    if (skillFields.skillName == 'basicDerivatives') {
+      masteredSkill = progressFields.masteredBasicDerivatives
+      skillMaxCorrect = progressFields.basicDerivativesMaxCorrect
+    } else if (skillFields.skillName == 'negativeCoefficients') {
+      masteredSkill = progressFields.masteredNegativeCoefficients
+      skillMaxCorrect = progressFields.negativeCoefficientsMaxCorrect
+    } else if (skillFields.skillName == 'fractionalCoefficients') {
+        masteredSkill = progressFields.masteredFractionalCoefficients
+        skillMaxCorrect = progressFields.fractionalCoefficientsMaxCorrect
+    } else if (skillFields.skillName == 'basicMix') {
+        masteredSkill = progressFields.masteredBasicMix
+        skillMaxCorrect = progressFields.basicMixMaxCorrect
+    } else if (skillFields.skillName == 'negativeExponents') {
+        masteredSkill = progressFields.masteredNegativeExponents
+        skillMaxCorrect = progressFields.negativeExponentsMaxCorrect
+    } else if (skillFields.skillName == 'fractionalExponents') {
+        masteredSkill = progressFields.masteredFractionalExponents
+        skillMaxCorrect = progressFields.fractionalExponentsMaxCorrect
+    } else if (skillFields.skillName == 'advancedMix') {
+        masteredSkill = progressFields.masteredAdvancedMix
+        skillMaxCorrect = progressFields.advancedMixMaxCorrect
+    }
+    return [masteredSkill, skillMaxCorrect]
+  }
 
   function setMasterEquation() {
     negativeCoefficient = 0;

@@ -25,6 +25,12 @@
           <a class="nav-item nav-link" href="{% url 'mc_app:jsPunctuation' %}">Quizzes</a>
           <a class="nav-item nav-link" href="{% url 'mc_app:skill_selection' %}">Calculus Skills</a>
           <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Instruction</a>
+          {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'users:logout' %}">Log out</a>
+          {% else %}
+            <a class="nav-item nav-link" href="{% url 'users:register' %}">Register</a>
+            <a class="nav-item nav-link" href="{% url 'users:login' %}">Log in</a>
+          {% endif %}
         </div>
       </div>
     </nav>

@@ -23,8 +23,14 @@
   </div>
 </div>
 <script>
+  var sessionObj = {{sessionObj|safe}};
+  var sessionFields = sessionObj[0].fields;
+  var skillObj = {{skillObj|safe}};
+  var skillFields = skillObj[0].fields;
+  var progressObj = {{progressObj|safe}};
+  var progressFields = progressObj[0].fields;
   var negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients;
-  setEquationParameters("{{selection}}");
+  [negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients] = setEquationParameters("{{selection}}");
 
 
   function setEquationParameters(selection){
