@@ -1,0 +1,80 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+<h4>Class Progress</h4>
+<div class="table-responsive">
+  <table class="table table-striped table-sm text-center ">
+    <thead>
+      <tr>
+        <th scope="col">Username</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Attempted</th>
+        <th scope="col">Correct</th>
+        <th scope="col">Basic Derivatives</th>
+        <th scope="col">Negative Coefficients</th>
+        <th scope="col">Fractional Coefficients</th>
+        <th scope="col">Basic Mix</th>
+        <th scope="col">Advanced Mix</th>
+        <th scope="col">Negative Exponents</th>
+        <th scope="col">Fractional Exponents</th>
+        <th scope="col">Negative Fractional Exponents</th>        
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in progressData %}
+        <tr>
+          <th scope="row">{{ student.progressForUser.username }}</th>
+          <td>{{student.progressForUser.first_name}}</td>
+          <td>{{student.progressForUser.last_name}}</td>
+          <td>{{student.totalQuestionsAttempted}}</td>
+          <td>{{student.totalQuestionsAnsweredCorrectly}}</td>
+          {% if student.masteredBasicDerivatives %}
+            <td class="table-success">{{student.masteredBasicDerivatives}}</td>
+          {% else %}
+            <td>{{student.masteredBasicDerivatives}}</td>
+          {% endif %}
+          {% if student.masteredNegativeCoefficients %}
+            <td class="table-success">{{student.masteredNegativeCoefficients}}</td>
+          {% else %}
+            <td>{{student.masteredNegativeCoefficients}}</td>
+          {% endif %}
+          {% if student.masteredFractionalCoefficients %}
+            <td class="table-success">{{student.masteredFractionalCoefficients}}</td>
+          {% else %}
+            <td>{{student.masteredFractionalCoefficients}}</td>
+          {% endif %}
+          {% if student.masteredBasicMix %}
+            <td class="table-success">{{student.masteredBasicMix}}</td>
+          {% else %}
+            <td>{{student.masteredBasicMix}}</td>
+          {% endif %}
+          {% if student.masteredAdvancedMix %}
+            <td class="table-success">{{student.masteredAdvancedMix}}</td>
+          {% else %}
+            <td>{{student.masteredAdvancedMix}}</td>
+          {% endif %}
+          {% if student.masteredNegativeExponents %}
+            <td class="table-success">{{student.masteredNegativeExponents}}</td>
+          {% else %}
+            <td>{{student.masteredNegativeExponents}}</td>
+          {% endif %}
+          {% if student.masteredFractionalExponents %}
+            <td class="table-success">{{student.masteredFractionalExponents}}</td>
+          {% else %}
+            <td>{{student.masteredFractionalExponents}}</td>
+          {% endif %}
+          {% if student.masteredNegativeFractionalExponents %}
+            <td class="table-success">{{student.masteredNegativeFractionalExponents}}</td>
+          {% else %}
+            <td>{{student.masteredNegativeFractionalExponents}}</td>
+          {% endif %}
+
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

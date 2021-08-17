@@ -17,4 +17,8 @@ urlpatterns = [
     path('fractionalCoefficients/', views.fractionalCoefficients, name='fractionalCoefficients'),
     # Record data afte a DerivativesSkills skill has been mastered.
     path('masteredRoutine/', views.masteredRoutine, name='masteredRoutine'),
+    # Check the progress of all users.
+    path('class_progress/', views.class_progress, name='class_progress'),
+    # Check your progress.
+    path('your_progress/', views.your_progress, name='your_progress'),
 ]

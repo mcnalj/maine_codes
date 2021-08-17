@@ -1,0 +1,311 @@
+{% extends "mc_app/base.html" %}
+{% load static %}
+{% block content %}
+<h3>Progress for <span style="color: gray">{{request.user.username}}<span></h3>
+<div id="summaryCard" class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header">OVERALL PROGRESS</div>
+  <div class="card-body">
+    <p>Total Skills Mastered: {{progressData.totalSkillsMastered}}</p>
+    <p>Total Questions Answered Correctly: {{progressData.totalQuestionsAnsweredCorrectly}}</p>
+    <p>Longest Streak: {{progressData.longestStreak}}</p>
+  </div>
+</div>
+<div class="card mx-auto border border-dark mt-2" style="width: 80%">
+<div class="card-header">SKILLS SUMMARY</div>
+<div class="card-body">
+  <table class="table table-sm text-center ">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Skill</th>
+        <th scope="col">Max Number Correct</th>
+        <th scope="col">Achieved Mastery</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">Basic Derivatives</th>
+        <td>{{progressData.basicDerivativesMaxCorrect}}</td>
+        {% if progressData.masteredBasicDerivatives %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th scope="row">Negative Coefficients</th>
+        <td>{{progressData.negativeCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th scope="row">Fractional Coefficients</th>
+        <td>{{progressData.fractionalCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredFractionalCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th scope="row">Basic Mix</th>
+        <td>{{progressData.basicMixMaxCorrect}}</td>
+        {% if progressData.masteredBasicMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th scope="row">Advanced Mix</th>
+        <td>{{progressData.advancedMixMaxCorrect}}</td>
+        {% if progressData.masteredAdvancedMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Negative Exponents</th>
+        <td>{{progressData.negativeExponentsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeExponents %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Negative Exponents With Negative Coefficients</th>
+        <td>{{progressData.negativeExponentsAndCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeExponentsAndCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Negative Exponents With Fractional Coefficients</th>
+        <td>{{progressData.negativeExponentsAndFractionalCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeExponentsAndFractionalCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Negative Exponents Basic Mix</th>
+        <td>{{progressData.negativeExponentsBasicMixMaxCorrect}}</td>
+        {% if progressData.masteredNegativeExponentsBasicMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-primary">
+        <th scope="row">Negative Exponents Advanced Mix</th>
+        <td>{{progressData.negativeExponentsAdvancedMixMaxCorrect}}</td>
+        {% if progressData.masteredNegativeExponentsAdvancedMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">Fractional Exponents</th>
+        <td>{{progressData.fractionalExponentsMaxCorrect}}</td>
+        {% if progressData.masteredFractionalExponents %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">Fractional Exponents with Negative Coefficients</th>
+        <td>{{progressData.fractionalExponentsAndNegativeCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredFractionalExponentsAndNegativeCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">Fractional Exponents with Fractional Coefficients</th>
+        <td>{{progressData.fractionalExponentsAndFractionalCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredFractionalExponentsAndFractionalCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">Fractional Exponents Basic Mix</th>
+        <td>{{progressData.fractionalExponentsBasicMixMaxCorrect}}</td>
+        {% if progressData.masteredFractionalExponentsBasicMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-secondary">
+        <th scope="row">Fractional Exponents Advanced Mix</th>
+        <td>{{progressData.fractionalExponentsAdvancedMixMaxCorrect}}</td>
+        {% if progressData.masteredFractionalExponentsAdvancedMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-info">
+        <th scope="row">Negative Fractional Exponents</th>
+        <td>{{progressData.negativeFractionalExponentsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeFractionalExponents %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-info">
+        <th scope="row">Negative Fractional Exponents with Negative Coefficients</th>
+        <td>{{progressData.negativeFractionalExponentsAndNegativeCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeFractionalExponentsAndNegativeCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-info">
+        <th scope="row">NegativeFractional Exponents with Fractional Coefficients</th>
+        <td>{{progressData.negativeFractionalExponentsAndFractionalCoefficientsMaxCorrect}}</td>
+        {% if progressData.masteredNegativeFractionalExponentsAndFractionalCoefficients %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-info">
+        <th scope="row">NegativeFractional Exponents Basic Mix</th>
+        <td>{{progressData.negativeFractionalExponentsBasicMixMaxCorrect}}</td>
+        {% if progressData.masteredNegativeFractionalExponentsBasicMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+      <tr class="table-info">
+        <th scope="row">NegativeFractional Exponents Advanced Mix</th>
+        <td>{{progressData.negativeFractionalExponentsAdvancedMixMaxCorrect}}</td>
+        {% if progressData.masteredNegativeFractionalExponentsAdvancedMix %}
+          <td>
+            <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20">
+              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+              <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+            </svg>
+          </td>
+        {% else %}
+          <td>Not Yet</td>
+        {% endif %}
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+{% endblock content %}

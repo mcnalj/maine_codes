@@ -25,8 +25,6 @@ from .forms import SelectSkillsForm
 """Need to connect Google Sign In"""
 """Need to hook up Twilio for notifications"""
 
-"""Need to figure out what's going on with co-pacity Twilio"""
-
 def index(request):
     """The home page for Maine codes."""
     return render(request, 'mc_app/index.html')
@@ -55,18 +53,25 @@ def jsPunctuation(request):
     """The page for quizzes."""
     return render(request, 'mc_app/jsPunctuation.html')
 
+@login_required
 def skill_selection(request):
     if request.method != 'POST':
-        return render(request, 'mc_app/skill_selection.html')
+        progressObj = serializers.serialize('json', UserProgress.objects.filter(progressForUser=request.user))
+        context = {'progressObj': progressObj}
+        return render(request, 'mc_app/skill_selection.html', context)
     else:
+        print(request.user)
         sessionObj = serializers.serialize('json', UsersLatestSession.objects.filter(sessionUser=request.user))
-
+        print(sessionObj)
         form = SelectSkillsForm(data=request.POST)
         if form.is_valid():
             selection = form.cleaned_data["skillRadios"]
+            print("This is selection: ")
+            print(selection)
         else:
             selection = 'basicDerivatives'
         skillObj = serializers.serialize('json', DerivativesSkills.objects.filter(skillName=selection))
+        print(skillObj)
         progressObj = serializers.serialize('json', UserProgress.objects.filter(progressForUser=request.user))
         context = {'selection': selection, 'sessionObj':sessionObj, 'skillObj': skillObj, 'progressObj': progressObj}
         return render(request, 'mc_app/derivatives.html', context )
@@ -90,8 +95,66 @@ def masteredRoutine(request):
             UserProgress.objects.filter(progressForUser=request.user).update(masteredFractionalExponents = True, fractionalExponentsMaxCorrect = request.POST['progressMaxCorrect'])
         elif request.POST["skillName"] == "advancedMix":
             UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
-    """This page does not actually get rendered, but it though and error wihtout any html"""
+        elif request.POST["skillName"] == "negativeExponentsAndCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeExponentsAndFractionalCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeExponentsBasicMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeExponentsAdavancedMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "fractionalExponentsAndNegativeCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "fractionalExponentsAndFractionalCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "fractionalExponentsBasicMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "fractionalExponentsAdavancedMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeFractionalExponents":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredFractionalExponents = True, fractionalExponentsMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeFractionalExponentsAndNegativeCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeFractionalExponentsAndFractionalCoefficients":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeFractionalExponentsBasicMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+        elif request.POST["skillName"] == "negativeFractionalExponentsAdavancedMix":
+            UserProgress.objects.filter(progressForUser=request.user).update(masteredAdvancedMix = True, advancedMixMaxCorrect = request.POST['progressMaxCorrect'])
+    """This page does not actually get rendered, but it throws an error wihtout any html"""
+    return render(request, 'mc_app/derivatives.html')
+
+def masteredMessage(request):
+    """This shows a message when user has mastered a skill."""
+    print("In the masteredMessage routine.")
+    if request.method != 'POST':
+        print("This is not a post")
+    else:
+        print("This is a post")
     return render(request, 'mc_app/skill_selection.html')
+
+@login_required
+def class_progress(request):
+    if request.method != 'POST':
+        progressData = UserProgress.objects.all()
+        context = {'progressData': progressData}
+        return render(request, 'mc_app/class_progress.html', context)
+    else:
+        print("This was a POST! Should be impossible!")
+
+    return render(request, 'mc_app/class_progress.html', context)
+
+@login_required
+def your_progress(request):
+    if request.method != 'POST':
+        progressData = UserProgress.objects.get(progressForUser=request.user)
+        context = {'progressData': progressData}
+        return render(request, 'mc_app/your_progress.html', context)
+    else:
+        print("This was a POST! Should be impossible!")
+
+    return render(request, 'mc_app/your_progress.html', context)
+
 
 def derivatives(request):
     print("Derivatives works!")

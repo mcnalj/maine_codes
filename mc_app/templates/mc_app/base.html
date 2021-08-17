@@ -21,15 +21,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home<span class="sr-only">(current)</span></a>
-          <a class="nav-item nav-link" href="{% url 'mc_app:jsPunctuation' %}">Quizzes</a>
+          <a class="nav-item nav-link active" href="{% url 'mc_app:index' %}">Home<span class="sr-only">(current)</span></a>
           <a class="nav-item nav-link" href="{% url 'mc_app:skill_selection' %}">Calculus Skills</a>
-          <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Instruction</a>
+          <a class="nav-item nav-link" href="{% url 'mc_app:jsPunctuation' %}">Coding Quizzes</a>
           {% if user.is_authenticated %}
+            <a class="nav-item nav-link" href="{% url 'mc_app:your_progress' %}">Your Progress</a>
+            {% if user.username == 'mcnalj'%}
+              <a class="nav-item nav-link" href="{% url 'mc_app:class_progress' %}">Class Progress</a>
+            {% endif %}
             <a class="nav-item nav-link" href="{% url 'users:logout' %}">Log out</a>
+            <a class="nav-link" href="{% url 'users:password_change' %}">Change Password</a>
           {% else %}
             <a class="nav-item nav-link" href="{% url 'users:register' %}">Register</a>
             <a class="nav-item nav-link" href="{% url 'users:login' %}">Log in</a>
+            <a class="nav-item nav-link" href="{% url 'password_reset' %}">Reset Password</a>
           {% endif %}
         </div>
       </div>

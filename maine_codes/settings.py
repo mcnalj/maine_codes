@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from mc_app.credentials import AppPasswordForSMTP
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -132,3 +133,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # My settings
 LOGIN_URL = 'users:login'
+
+# Email Setting for Register
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'jakemcnally@gmail.com'
+EMAIL_HOST_PASSWORD = AppPasswordForSMTP.app_password
+EMIAL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'Maine Codes Team <noreply@copacity.com>'

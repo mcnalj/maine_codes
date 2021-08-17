@@ -1,25 +1,678 @@
 {% extends "mc_app/base.html" %}
 {% load static %}
 {% block content %}
+<!-- Button trigger modal -->
+<button id="modalButton" type="button" class="btn btn-primary m-1" data-toggle="modal" data-target="#negativeCoefficientsModal">
+  EXPLANATION
+</button>
 
-<div id="questionCard" class="card mx-auto border border-dark mt-5" style="width: 80%">
-  <div class="card-header" id="topic">DERIVATIVES</div>
+<!-- Modal: Power Rule -->
+<div class="modal fade" id="basicDerivativesModal" tabindex="-1" role="dialog" aria-labelledby="basicDerivativesModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="basicDerivativesModalLabel">THE POWER RULE</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = 2x^3\)</p>
+        <p>Find the derivative of a variable term like \(2x^3\) by applying the <span class="font-italic font-weight-bold">Power Rule</span>:</p>
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">3</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">2</span>: \((3)2x^3\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((3)2x^2\).</p>
+        <p>&nbsp Simplify: \(6x^2\).</p>
+        <p class="text-center font-weight-bold">\(f'(x) = 6x^2\)</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Coefficients-->
+<div class="modal fade" id="negativeCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="negativeCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeCoefficientModalLabel">NEGATIVE COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = -2x^3\)</p>
+        <p>Negative coefficients require us to multiply by negative numbers when applying the Power Rule.
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">3</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">-2</span>: \((3)-2x^3\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((3)-2x^2\).</p>
+        <p>&nbsp Simplify: \(-6x^2\).</p>
+        <p class="text-center font-weight-bold">\(f'(x) = -6x^2\)</p>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Coefficients-->
+<div class="modal fade" id="fractionalCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="fractionalCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalCoefficientModalLabel">FRACTIONAL COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = \frac{1}{2}x^3\)</p>
+        <p>Fractional coefficients require us to multiply by fractions when applying the Power Rule.
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">3</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">\(\frac{1}{2}\)</span>: \((3)\frac{1}{2}x^3\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((3)\frac{1}{2}x^2\).</p>
+        <p>&nbsp Simplify: \(\frac{3}{2}x^2\).</p>
+        <p class="text-center font-weight-bold">\(f'(x) = \frac{3}{2}x^2\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Basic Mix-->
+<div class="modal fade" id="basicMixModal" tabindex="-1" role="dialog" aria-labelledby="basicMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="basicMixModalLabel">BASIC MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><span class="font-italic">a.</span> \(f(x) = 2x^4\) &nbsp&nbsp <span class="font-italic">b.</span> \(f(x) = -5x^2\) &nbsp&nbsp <span class="font-italic">c.</span> \(f(x) = \frac{2}{3}x^2\)</p>
+        <p>This quiz contains a mix of terms with positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>&nbsp Simply apply the Power Rule:</p>
+        <p><span class="font-italic">a.</span> \(f(x) = 2x^4\)</p>
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">4</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">2</span>: \((4)2x^4\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((4)2x^3\).</p>
+        <p>&nbsp Simplify: \(8x^3\).</p>
+        <p>\(f'(x) = 8x^3\)</p>
+        </br>
+        <p><span class="font-italic">b.</span> \(f(x) = -5x^2\)</p>
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">2</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">-5</span>: \((2)-5x^2\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((2)-5x\).</p>
+        <p>&nbsp Simplify: \(-10x\).</p>
+        <p>\(f'(x) = -10x\)</p>
+        </br>
+        <p><span class="font-italic">c.</span> \(f(x) = \frac{2}{3}x^2\)</p>
+        <p>&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">2</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">\(\frac{2}{3}\)</span>: \((2)\frac{2}{3}x^2\).</p>
+        <p>&nbsp Subtract 1 from the exponent: \((2)\frac{2}{3}x\).</p>
+        <p>&nbsp Simplify: \(\frac{4}{3}x\).</p>
+        <p>\(f'(x) = \frac{4}{3}x\)</p>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Advanced Mix-->
+<div class="modal fade" id="advancedMixModal" tabindex="-1" role="dialog" aria-labelledby="advancedMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="advancedMixModalLabel">ADVANCED MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This contains a mix of terms with positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>It is really the same as the Basic Mix, but the coefficients and exponents are higher numbers.</p>
+        <p>Just as in the Basic Mix, simply apply the Power Rule:</p>
+        <p class="text-center">\(f(x) = 7x^9\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">9</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">7</span>: \((9)7x^9\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: \((9)7x^8\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify: \(63x^8\).</p>
+        <p class="text-center">\(f'(x) = 63x^8\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Exponents-->
+<div class="modal fade" id="negativeExponentsModal" tabindex="-1" role="dialog" aria-labelledby="negativeExponentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeExponentsModalLabel">NEGATIVE EXPONENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">\(f(x) = \frac{1}{x^2}\)</p>
+        <p>\(\frac{1}{x^2}\) can be rewritten as \(x^{-2}\).</p>
+        <p>\(x^2\) means multiply by \(x\) two times.</p>
+        <p>\(x^{-2}\) means divide by \(x\) two times.&nbsp&nbsp\(x^{-2} = \frac{1}{x^2}\)</p>
+        <p>Essentially, negative exponents "push" the \(x\) term to the denominator.</p>
+        <p class="text-center">\(x^{-3} = \frac{1}{x^3}\)</p>
+        <p class="text-center"> \(2x^{-4} = \frac{2}{x^4}\)</p>
+        <p class="text-center"> \(\frac{3}{5}x^{-2} = \frac{3}{5x^2}\)</p>
+        <p>We can easily use the Power Rule to find the derivative of terms with negative exponents.</p>
+        <p>We can simply rewrite the term using a negative exponent and then take the derivative in the usual way.</p>
+        <p class="text-center">\(f(x) = \frac{1}{x^2}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent: &nbsp&nbsp\(f(x) = x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -2 by the coefficient 1:&nbsp&nbsp \((-2)1x^{-2}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-2)1x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbsp<span class="font-italic">Subtract 1 from -2 and it gets more negative and becomes -3</span>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(-2x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a positive exponent):&nbsp&nbsp\(-\frac{2}{x^3}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{2}{x^3}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Exponents and Coefficients-->
+<div class="modal fade" id="negativeExponentsAndCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="negativeExponentsAndCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeExponentsAndCoefficientModalLabel">NEGATIVE COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = -\frac{2}{x^3}\)</p>
+        <p>Negative exponents with negative coefficients require us to multiply a negative by a negative when applying the Power Rule.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent: &nbsp&nbsp\(f(x) = -2x^{-3}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -3 by the coefficient -2:&nbsp&nbsp \((-3)(-2)x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-3)(-2)x^{-4}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(6x^{-4}\).</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a positive exponent):&nbsp&nbsp\(\frac{6}{x^4}\)</p>
+        <p class="text-center">\(f'(x) = \frac{6}{x^4}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Exponents Fractional Coefficients-->
+<div class="modal fade" id="negativeExponentsAndFractionalCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="negativeExponentsAndFractionalCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeExponentsAndFractionalCoefficientsModalLabel">NEGATIVE EXPONENTS, FRACTIONAL COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = \frac{3}{4x^2}\)</p>
+        <p>Fractional coefficients require us to multiply by fractions when applying the Power Rule.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent: &nbsp&nbsp\(f(x) = \frac{3}{4}x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -2 by the coefficient \(\frac{3}{4}\):&nbsp&nbsp \((-2)\frac{3}{4}x^{-2}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-2)\frac{3}{4}x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(-\frac{6}{4}x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbsp Reduce the fraction:&nbsp&nbsp \(-\frac{3}{2}x^{-3}\).</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a positive exponent):&nbsp&nbsp\(-\frac{3}{2x^3}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{3}{2x^3}\)</p></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Exponents Basic Mix-->
+<div class="modal fade" id="negativeExponentsBasicMixModal" tabindex="-1" role="dialog" aria-labelledby="negativeExponentsBasicMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeExponentsBasicMixModalLabel">NEGATIVE EXPONENTS BASIC MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><span class="font-italic">a.</span> \(f(x) = \frac{2}{x^5}\) &nbsp&nbsp <span class="font-italic">b.</span> \(f(x) = -\frac{3}{x^2}\) &nbsp&nbsp <span class="font-italic">c.</span> \(f(x) = \frac{2}{3x^2}\)</p>
+        <p>This contains a mix of terms, some with negative exponents, and a mix of positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>To find the derivative, rewrite as a negative exponent and apply the Power Rule.
+        <p><span class="font-italic">a.</span> \(f(x) = \frac{2}{x^5}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent:&nbsp&nbsp \(f(x) = 2x^{-5}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -5 by the coefficient 2: &nbsp&nbsp \((-5)2x^{-5}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-5)2x^{-6}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(-10x^{-6}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (no negative exponent): &nbsp&nbsp \(-\frac{10}{x^6}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{10}{x^6}\)</p>
+        </br>
+        <p><span class="font-italic">b.</span> \(f(x) = -\frac{3}{x^2}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent:&nbsp&nbsp \(f(x) = -3x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -2 by the coefficient -3: &nbsp&nbsp \((-2)(-3)x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-2)(-3)x^{-3}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(6x^{-3}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (no negative exponent): &nbsp&nbsp \(\frac{6}{x^3}\)</p>
+        <p class="text-center">\(f'(x) = \frac{6}{x^3}\)</p>
+        </br>
+        <p><span class="font-italic">c.</span> \(f(x) = \frac{2}{3x^2}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent:&nbsp&nbsp \(f(x) = \frac{2}{3}x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent -2 by the coefficient \(\frac{2}{3}\): &nbsp&nbsp \((-2)(\frac{2}{3})x^{-2}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-2)(\frac{2}{3})x^{-3}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(-\frac{4}{3}x^{-3}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (no negative exponent): &nbsp&nbsp \(-\frac{4}{3x^3}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{4}{3x^3}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Exponents Advanced Mix-->
+<div class="modal fade" id="negativeExponentsAdvancedMixModal" tabindex="-1" role="dialog" aria-labelledby="negativeExponentsAdvancedMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeExponentsAdvancedMixModalLabel">NEGATIVE EXPONENTS ADVANCED MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This contains a mix of terms with negative exponents and with positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>It is really the same as the Basic Mix, but the coefficients and exponents are higher numbers.</p>
+        <p>Just as in the Basic Mix, simply apply the Power Rule:</p>
+        <p class="text-center">\(f(x) = \frac{8}{x^7}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent: \(8x^{-7}\).</p>
+        <p>&nbsp&nbsp&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">-7</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">8</span>: \((-7)8x^{-7}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: \((-7)8x^{-8}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify: \(-56x^{-8}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in the same form as the quesion (with a positive exponent): \(-\frac{56}{x^8}\).</p>
+        <p class="text-center">\(f'(x) = -\frac{56}{x^8}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Exponents-->
+<div class="modal fade" id="fractionalExponentsModal" tabindex="-1" role="dialog" aria-labelledby="fractionalExponentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalExponentsModalLabel">FRACTIONAL EXPONENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">\(f(x) = x^{\frac{2}{3}}\)</p>
+        <p>\(\sqrt[3]{x^2}\) can be read as "the cubed root of x-squared".</p>
+        <p>This can be written as a fractional exponent like this: \(x^{\frac{2}{3}}\)</p>
+        <p>In a fractional exponent, the numerator is the exponent and the denominator is the root.</p>
+        <p>We can easily use the Power Rule to find the derivative of terms with fractional exponents.</p>
+        <p>We can simply rewrite the term using a fractional exponent and then take the derivative in the usual way.</p>
+        <p class="text-center">\(f(x) = \sqrt[3]{x^2}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp\(f(x) = x^{\frac{2}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{2}{3}\) by the coefficient 1:&nbsp&nbsp \((\frac{2}{3})(1)x^{\frac{2}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((\frac{2}{3})(1)x^{-\frac{1}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp<span class="font-italic">Subtract 1 \(\left(or \frac{3}{3}\right)\) from \(\frac{2}{3}\) and you get \(-\frac{1}{3}\).</span></p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(\frac{2}{3}x^{-\frac{1}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite it with a positive exponent:&nbsp&nbsp\(\frac{2}{3x^{\frac{1}{3}}}\)</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical):&nbsp&nbsp\(\frac{2}{3\sqrt[3]{x}}\)</p>
+        <p class="text-center">\(f'(x) = \frac{2}{3\sqrt[3]{x}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Exponents and Negative Coefficients-->
+<div class="modal fade" id="fractionalExponentsAndNegativeCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="fractionalExponentsAndNegativeCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalExponentsAndNegativeCoefficientsModalLabel">FRACTIONAL EXPONENTS AND NEGATIVE COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = -3\sqrt{x^3}\)</p>
+        <p>Fractional exponents with negative coefficients require us to multiply fractions by negative numbers.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp\(f(x) = -3x^{\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{3}{2}\) by the coefficient -3:&nbsp&nbsp \((\frac{3}{2})(-3)x^{\frac{3}{2}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((\frac{3}{2})(-3)x^{\frac{1}{2}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(-\frac{9}{2}x^{\frac{1}{2}}\).</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical sign instead of a fractional exponent):&nbsp&nbsp\(-\frac{9}{2}\sqrt{x}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{9}{2}\sqrt{x}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Exponents and Fractional Coefficients-->
+<div class="modal fade" id="fractionalExponentsAndFractionalCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="fractionalExponentsAndFractionalCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalExponentsAndFractionalCoefficientsModalLabel">FRACTIONAL EXPONENTS AND FRACTIONAL COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = \frac{2}{3}\sqrt[3]{x^4}\)</p>
+        <p>Fractional exponents with fractional coefficients require us to multiply fractions by fractions when applying the Power Rule to find the derivative.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp\(f(x) = \frac{2}{3}x^{\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{4}{3}\) by the coefficient \(\frac{2}{3}\):&nbsp&nbsp \((\frac{4}{3})(\frac{2}{3})x^{\frac{4}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((\frac{4}{3})(\frac{2}{3})x^{\frac{1}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(\frac{8}{9}x^{\frac{1}{3}}\).</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical sign instead of a fractional exponent):&nbsp&nbsp\(\frac{8}{9}\sqrt[3]{x}\)</p>
+        <p class="text-center">\(f'(x) = \frac{8}{9}\sqrt[3]{x}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Exponents Basic Mix-->
+<div class="modal fade" id="fractionalExponentsBasicMixModal" tabindex="-1" role="dialog" aria-labelledby="fractionalExponentsBasicMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalExponentsBasicMixModalLabel">FRACTIONAL EXPONENTS BASIC MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><span class="font-italic">a.</span> \(f(x) = 2\sqrt[3]{x^4}\) &nbsp&nbsp <span class="font-italic">b.</span> \(f(x) = -5\sqrt{x^3}\) &nbsp&nbsp <span class="font-italic">c.</span> \(f(x) = \frac{1}{2}\sqrt{x^5}\)</p>
+        <p>This contains a mix of terms, some with fractional exponents, and a mix of positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>To find the derivative, rewrite as a fractional exponent and apply the Power Rule.
+        <p><span class="font-italic">a.</span> \(f(x) = 2\sqrt[3]{x^4}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent:&nbsp&nbsp \(f(x) = 2x^{\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{4}{3}\) by the coefficient 2: &nbsp&nbsp \((\frac{4}{3})2x^{\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((\frac{4}{3})2x^{\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(\frac{8}{3}x^{\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (using a radical sign instead of a fractional exponent): &nbsp&nbsp \(\frac{8}{3}\sqrt[3]{x}\)</p>
+        <p class="text-center">\(f'(x) = \frac{8}{3}\sqrt[3]{x}\)</p>
+        </br>
+        <p><span class="font-italic">b.</span> \(f(x) = -5\sqrt{x^3}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent:&nbsp&nbsp \(f(x) = -5x^{\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{3}{2}\) by the coefficient -5: &nbsp&nbsp \((\frac{3}{2})(-5)x^{\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((\frac{3}{2})(-5)x^{\frac{1}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(-\frac{15}{2}x^{\frac{1}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (with a radical sign instead of a fractional exponent): &nbsp&nbsp \(-\frac{15}{2}\sqrt{x}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{15}{2}\sqrt{x}\)</p>
+        </br>
+        <p><span class="font-italic">c.</span> \(f(x) = \frac{1}{2}\sqrt{x^5}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent:&nbsp&nbsp \(f(x) = \frac{1}{2}x^{\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(\frac{5}{2}\) by the coefficient \(\frac{1}{2}\): &nbsp&nbsp \((\frac{5}{2})(\frac{1}{2})x^{\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((\frac{5}{2})(\frac{1}{2})x^{\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(\frac{5}{4}x^{\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (no negative exponent): &nbsp&nbsp \(\frac{5}{4}\sqrt{x^3}\)</p>
+        <p class="text-center">\(f'(x) = \frac{5}{4}\sqrt{x^3}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Fractional Exponents Advanced Mix-->
+<div class="modal fade" id="fractionalExponentsAdvancedMixModal" tabindex="-1" role="dialog" aria-labelledby="fractionalExponentsAdvancedMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="fractionalExponentsAdvancedMixModalLabel">FRACTIONAL EXPONENTS ADVANCED MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This contains a mix of terms with fractional exponents and with positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>It is really the same as the Basic Mix, but the coefficients and exponents are higher numbers.</p>
+        <p>Just as in the Basic Mix, simply apply the Power Rule:</p>
+        <p class="text-center">\(f(x) = {6}\sqrt[7]{x^8}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp&nbsp\(6x^{\frac{8}{7}}\).</p>
+        <p>&nbsp&nbsp&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">\(\frac{8}{7}\)</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">6</span>:&nbsp&nbsp&nbsp \((\frac{8}{7})6x^{\frac{8}{7}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp&nbsp\((\frac{8}{7})6x^{\frac{1}{7}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp&nbsp \(\frac{48}{7}x^{\frac{1}{7}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in the same form as the quesion (with a radical instead of a fractional exponent): &nbsp&nbsp&nbsp\(\frac{48}{7}\sqrt[7]{x}\).</p>
+        <p class="text-center">\(f'(x) = \frac{48}{7}\sqrt[7]{x}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Fractional Exponents-->
+<div class="modal fade" id="negativeFractionalExponentsModal" tabindex="-1" role="dialog" aria-labelledby="negativeFractionalExponentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeFractionalExponentsModalLabel">NEGATIVE FRACTIONAL EXPONENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center">\(f(x) = \frac{2}{\sqrt[3]{x}}\)</p>
+        <p>Negative fractional exponents combine the concepts of negative exponents and fractional exponents.</p>
+        <p>If \(f(x) = 2x^{-\frac{1}{3}}\), the negative component of the fraction "pushes" the x term to the denominator: &nbsp&nbsp \(\frac{2}{x^{\frac{1}{3}}}\)</p>
+        <p>The fractional part is just another way of writing the radical sign: &nbsp&nbsp \(\frac{2}{\sqrt[3]{x}}\) </p>
+        <p>We can easily use the Power Rule to find the derivative of terms with negative fractional exponents.</p>
+        <p>Rewrite the terms in radical form using negative fractional exponents and then take the derivative in the usual way.</p>
+        <p class="text-center">\(f(x) = \frac{2}{\sqrt[3]{x}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp\(f(x) = 2x^{-\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{1}{3}\) by the coefficient 2:&nbsp&nbsp \((-\frac{1}{3})(2)x^{-\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-\frac{1}{3})(2)x^{-\frac{4}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(-\frac{2}{3}x^{-\frac{4}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite it with a positive exponent:&nbsp&nbsp\(-\frac{2}{3x^{\frac{4}{3}}}\)</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical):&nbsp&nbsp\(-\frac{2}{3\sqrt[3]{x}}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{2}{3\sqrt[3]{x^4}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Fractional Exponents and Negative Coefficients-->
+<div class="modal fade" id="negativeFractionalExponentsAndNegativeCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="negativeFractionalExponentsAndNegativeCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeFractionalExponentsAndNegativeCoefficientsModalLabel">NEGATIVE FRACTIONAL EXPONENTS AND NEGATIVE COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = -\frac{3}{\sqrt[3]{x^2}}\)</p>
+        <p>Negative fractional exponents with negative coefficients require us to multiply negative fractions by negative numbers. This will result in a positive coefficient.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative fractional exponent: &nbsp&nbsp\(f(x) = -3x^{-\frac{2}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{2}{3}\) by the coefficient -3:&nbsp&nbsp \((-\frac{2}{3})(-3)x^{-\frac{2}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-\frac{2}{3})(-3)x^{-\frac{5}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(\frac{6}{3}x^{-\frac{5}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Reduce the fraction:&nbsp&nbsp \(2x^{-\frac{5}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent:&nbsp&nbsp \(\frac{2}{x^{\frac{5}{3}}}\)</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical sign instead of a fractional exponent):&nbsp&nbsp\(\frac{2}{\sqrt[3]{x^5}}\)</p>
+        <p class="text-center">\(f'(x) = \frac{2}{\sqrt[3]{x^5}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Fractional Exponents and Fractional Coefficients-->
+<div class="modal fade" id="negativeFractionalExponentsAndFractionalCoefficientsModal" tabindex="-1" role="dialog" aria-labelledby="negativeFractionalExponentsAndFractionalCoefficientsModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeFractionalExponentsAndFractionalCoefficientsModalLabel">NEGATIVE FRACTIONAL EXPONENTS AND FRACTIONAL COEFFICIENTS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center font-weight-bold">\(f(x) = \frac{2}{3\sqrt[3]{x^4}}\)</p>
+        <p>Negative fractional exponents with fractional coefficients require us to multiply negative fractions by fractions when applying the Power Rule to find the derivative.</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative fractional exponent: &nbsp&nbsp\(f(x) = \frac{2}{3}x^{-\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{4}{3}\) by the coefficient \(\frac{2}{3}\):&nbsp&nbsp \((-\frac{4}{3})(\frac{2}{3})x^{-\frac{4}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent:&nbsp&nbsp \((-\frac{4}{3})(\frac{2}{3})x^{-\frac{7}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp \(-\frac{8}{9}x^{-\frac{7}{3}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent:&nbsp&nbsp \(-\frac{8}{9x^{\frac{7}{3}}}\)</p>
+        <p>&nbsp&nbsp&nbspPut it back in its original form (with a radical sign instead of a fractional exponent):&nbsp&nbsp\(-\frac{8}{9\sqrt[3]{x^7}}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{8}{9\sqrt[3]{x^7}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Fractional Exponents Basic Mix-->
+<div class="modal fade" id="negativeFractionalExponentsBasicMixModal" tabindex="-1" role="dialog" aria-labelledby="negativeFractionalExponentsBasicMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeFractionalExponentsBasicMixModalLabel">NEGATIVE FRACTIONAL EXPONENTS BASIC MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="text-center"><span class="font-italic">a.</span> \(f(x) = \frac{4}{\sqrt[3]{x}}\) &nbsp&nbsp <span class="font-italic">b.</span> \(f(x) = \frac{-5}{\sqrt{x^3}}\) &nbsp&nbsp <span class="font-italic">c.</span> \(f(x) = \frac{3}{4\sqrt{x^5}}\)</p>
+        <p>This contains a mix of terms, some with negative fractional exponents, and a mix of positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>To find the derivative, rewrite as a negative fractional exponent and apply the Power Rule.
+        <p><span class="font-italic">a.</span> \(f(x) = \frac{4}{\sqrt[3]{x}}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative fractional exponent:&nbsp&nbsp \(f(x) = 4x^{-\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{1}{3}\) by the coefficient 4: &nbsp&nbsp \((-\frac{1}{3})4x^{-\frac{1}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-\frac{1}{3})4x^{-\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(-\frac{4}{3}x^{-\frac{4}{3}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent: &nbsp&nbsp \(-\frac{4}{3x^{\frac{4}{3}}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in its original form (using a radical sign instead of a fractional exponent): &nbsp&nbsp \(-\frac{4}{3\sqrt[3]{x^4}}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{4}{3\sqrt[3]{x^4}}\)</p>
+        </br>
+        <p><span class="font-italic">b.</span> \(f(x) = -\frac{5}{\sqrt{x^3}}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative fractional exponent:&nbsp&nbsp \(f(x) = -5x^{-\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{3}{2}\) by the coefficient -5: &nbsp&nbsp \((-\frac{3}{2})(-5)x^{-\frac{3}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-\frac{3}{2})(-5)x^{-\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(\frac{15}{2}x^{-\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent:&nbsp&nbsp \(\frac{15}{2x^{\frac{5}{2}}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term in its original form (with a radical sign instead of a fractional exponent): &nbsp&nbsp \(\frac{15}{2\sqrt{x^5}}\)</p>
+        <p class="text-center">\(f'(x) = \frac{15}{2\sqrt{x^5}}\)</p>
+        </br>
+        <p><span class="font-italic">c.</span> \(f(x) = \frac{3}{4\sqrt{x^5}}\) &nbsp&nbsp <span class="font-italic"></p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a negative exponent:&nbsp&nbsp \(f(x) = \frac{3}{4}x^{-\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Multiply the exponent \(-\frac{5}{2}\) by the coefficient \(\frac{3}{4}\): &nbsp&nbsp \((-\frac{5}{2})(\frac{3}{4})x^{-\frac{5}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp \((-\frac{5}{2})(\frac{3}{4})x^{-\frac{7}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Simplify: &nbsp&nbsp \(-\frac{15}{6}x^{-\frac{7}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Reduce the fraction: &nbsp&nbsp \(-\frac{5}{2}x^{-\frac{7}{2}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent: &nbsp&nbsp \(-\frac{5}{2x^{\frac{7}{2}}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term in its original form (with a radical sign instead of a fractional exponent): &nbsp&nbsp \(-\frac{5}{2\sqrt{x^7}}\)</p>
+        <p class="text-center">\(f'(x) = -\frac{5}{2\sqrt{x^7}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: Negative Fractional Exponents Advanced Mix-->
+<div class="modal fade" id="negativeFractionalExponentsAdvancedMixModal" tabindex="-1" role="dialog" aria-labelledby="negativeFractionalExponentsAdvancedMixModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="negativeFractionalExponentsAdvancedMixModalLabel">NEGATIVE FRACTIONAL EXPONENTS ADVANCED MIX</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This contains a mix of terms with negative fractional exponents and with positive whole-number coefficients, negative coefficients, and fractional coefficients.</p>
+        <p>It is really the same as the Basic Mix, but the coefficients and exponents are higher numbers.</p>
+        <p>Just as in the Basic Mix, simply apply the Power Rule:</p>
+        <p class="text-center">\(f(x) = \frac{9}{\sqrt[5]{x^7}}\)</p>
+        <p>&nbsp&nbsp&nbsp Rewrite as a fractional exponent: &nbsp&nbsp&nbsp\(9x^{-\frac{7}{5}}\).</p>
+        <p>&nbsp&nbsp&nbsp Multiply the <span class="font-italic font-weight-bold">exponent</span> <span class="font-italic">\(-\frac{7}{5}\)</span> by the <span class="font-italic font-weight-bold">coefficient</span>  <span class="font-italic">9</span>:&nbsp&nbsp&nbsp \((-\frac{7}{5})9x^{-\frac{7}{5}}\).</p>
+        <p>&nbsp&nbsp&nbsp Subtract 1 from the exponent: &nbsp&nbsp&nbsp\((-\frac{7}{5})9x^{-\frac{12}{5}}\).</p>
+        <p>&nbsp&nbsp&nbsp Simplify:&nbsp&nbsp&nbsp \(-\frac{63}{5}x^{-\frac{12}{5}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite the x term with a positive exponent: &nbsp&nbsp \(-\frac{63}{5x^{\frac{12}{5}}}\).</p>
+        <p>&nbsp&nbsp&nbsp Rewrite in the same form as the question (with a radical instead of a fractional exponent): &nbsp&nbsp&nbsp\(-\frac{63}{5\sqrt[5]{x^{12}}}\).</p>
+        <p class="text-center">\(f'(x) = -\frac{63}{5\sqrt[5]{x^{12}}}\)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="questionCard" class="card mx-auto border border-dark mt-1" style="width: 80%">
+  <div class="card-header" id="topic" style="display: inline-block">
+      <p id="skillName" class="m-2" style="font-size: 1.25rem; display: inline-block"></p>
+      <svg id="checkSVG" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="green" class="bi bi-check-circle" viewBox="0 0 20 20" style="display: inline-block; visibility: hidden;">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+      </svg>
+  </div>
   <div class="card-body text-center">
-    <h4 class="card-title" id="question">Find the derivative of the given function:</h4>
-    </br>
     <div id="mathEquation" style="font-size: 2rem;">\(f(x) = 6x^2\)</div>
     </br>
-    </br>
-    <form id="answer_form" class="card-footer mx-auto" style="width: 100%;" method="post">
+    <!--<form id="answer_form" class="card-footer mx-auto" style="width: 100%;" method="post">-->
+    <form id="answer_form" style="width: 100%;" method="post">
       {% csrf_token %}
-      </br>
       <label for="answer" style="font-size: 2rem;">\(f'(x) = \)</label>
       <input type='text' class="form-control" id="answer" name="answer" onfocus="this.placeholder=''" style="font-size: 2rem; text-align: center;" placeholder="3x^2" autocomplete="off">
       </br>
-      <p id="answerMessage" style="font-size: .75em; color:red; visibility:hidden;">Correct!</p>
+      <div class="progress">
+        <div id="progress_bar" class="progress-bar bg-success" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="7">0/7</div>
+      </div>
       </br>
+      <p id="answerMessage" style="font-size: .75em; color:red; visibility:hidden;">Correct!</p>
       <button id="answerButton" href="#" class="btn btn-primary" type="submit" style="width: 100%;">SUBMIT</button>
     </form>
+    <div>
+      <a id="pickSkill" href="{% url 'mc_app:skill_selection' %}" class="btn btn-primary mt-2" style="width: 100%; visibility: hidden">PICK A DIFFERENT SKILL</a>
+    </div>
   </div>
 </div>
 <script>
@@ -29,17 +682,19 @@
   var skillFields = skillObj[0].fields;
   var progressObj = {{progressObj|safe}};
   var progressFields = progressObj[0].fields;
-  var negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients;
-  [negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients] = setEquationParameters("{{selection}}");
-
+  var negativeCoefficients, negativeExponents, fractionalExponents, fractionalCoefficients, highNumbers;
+  [negativeCoefficients, fractionalCoefficients, negativeExponents, fractionalExponents, highNumbers] = setEquationParameters("{{selection}}");
+  var explanationModalId = "#" + "{{selection}}" + "Modal";
+  console.log(explanationModalId);
 
   function setEquationParameters(selection){
     console.log("This is selection in setEquation params")
     console.log(selection);
-    negativeCoefficient = 0;
-    fractionalCoefficient = 0;
-    negativeExponent = 0;
-    fractionalExponent = 0;
+    negativeCoefficients = 0;
+    fractionalCoefficients = 0;
+    negativeExponents = 0;
+    fractionalExponents = 0;
+    highNumbers = 0;
     if (selection == 'negativeCoefficients') {
       negativeCoefficients = 1;
     }
@@ -53,14 +708,85 @@
     if (selection == 'advancedMix') {
       negativeCoefficients = 1;
       fractionalCoefficients = 1;
+      highNumbers = 1;
+//      negativeExponents = 1;
+//      fractionalExponents = 1;
+    }
+    if (selection == 'negativeExponents'){
+      negativeExponents = 1;
+    }
+    if (selection == 'negativeExponentsAndNegativeCoefficients') {
+      negativeExponents = 1;
+      negativeCoefficients = 1;
+    }
+    if (selection == 'negativeExponentsAndFractionalCoefficients') {
+      negativeExponents = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'negativeExponentsBasicMix') {
+      negativeExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'negativeExponentsAdvancedMix') {
+      negativeExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+      highNumbers = 1;
+    }
+    if (selection == 'fractionalExponents'){
+      fractionalExponents = 1;
+    }
+    if (selection == 'fractionalExponentsAndNegativeCoefficients') {
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+    }
+    if (selection == 'fractionalExponentsAndFractionalCoefficients') {
+      fractionalExponents = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'fractionalExponentsBasicMix') {
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'fractionalExponentsAdvancedMix') {
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+      highNumbers = 1;
+    }
+    if (selection == 'negativeFractionalExponents'){
       negativeExponents = 1;
       fractionalExponents = 1;
     }
-    return [negativeCoefficients, fractionalCoefficients, negativeExponents, fractionalExponents];
+    if (selection == 'negativeFractionalExponentsAndNegativeCoefficients') {
+      negativeExponents = 1;
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+    }
+    if (selection == 'negativeFractionalExponentsAndFractionalCoefficients') {
+      negativeExponents = 1;
+      fractionalExponents = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'negativeFractionalExponentsBasicMix') {
+      negativeExponents = 1;
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+    }
+    if (selection == 'negativeFractionalExponentsAdvancedMix') {
+      negativeExponents = 1;
+      fractionalExponents = 1;
+      negativeCoefficients = 1;
+      fractionalCoefficients = 1;
+      highNumbers = 1;
+    }
+    return [negativeCoefficients, fractionalCoefficients, negativeExponents, fractionalExponents, highNumbers];
   }
 </script>
 <script src="{% static 'mc_app/javascript/derivatives.js' %}"></script>
 
-})
 
 {% endblock content %}

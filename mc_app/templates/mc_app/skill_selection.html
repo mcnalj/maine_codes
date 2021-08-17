@@ -1,41 +1,227 @@
 {% extends "mc_app/base.html" %}
 {% load static %}
 {% block content %}
-<div class="p-3">
-<h2>Derivative City</h2>
-<h4>pick a skill to practice. . .</h4>
+<div class="p-3 text-center">
+<h3>DERIVATIVES SKILLS</h3>
 </div>
-<div id="questionCard" class="card mx-auto border border-dark mt-2" style="width: 80%">
-  <div class="card-header" id="topic">BASIC DERIVATIVES</div>
+<div class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header">BASIC DERIVATIVES</div>
   <div class="card-body">
-    <form action="{% url 'mc_app:skill_selection' %}" id="answer_form" style="width: 100%;" method="POST">
+    <form action="{% url 'mc_app:skill_selection' %}" style="width: 100%;" method="POST">
       {% csrf_token %}
       <div class="form-check">
         <input class="form-check-input" type="radio" name="skillRadios" id="basicDerivatives" value="basicDerivatives" checked>
         <label class="form-check-label" for="basicDerivatives">keep it simple</label>
+        <svg id="checkSVGbasicDerivatives" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="skillRadios" id="negativeCoefficient" value="negativeCoefficients">
         <label class="form-check-label" for="negativeCoefficients">add negative coefficients</label>
+        <svg id="checkSVGnegativeCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="skillRadios" id="fractionalCoefficient" value="fractionalCoefficients">
-        <label class="form-check-label" for="freactionalCoefficients">add fractional coefficients</label>
+        <label class="form-check-label" for="fractionalCoefficients">add fractional coefficients</label>
+        <svg id="checkSVGfractionalCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="skillRadios" id="basicMix" value="basicMix">
         <label class="form-check-label" for="basicMix">mix it up</label>
+        <svg id="checkSVGbasicMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
       </div>
       <div class="form-check">
         <input class="form-check-input" type="radio" name="skillRadios" id="advancedMix" value="advancedMix">
         <label class="form-check-label" for="advancedMix">give me the advanced mix</label>
+        <svg id="checkSVGadvancedMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
       </div>
       <br>
-
       <button id="skillButton" class="btn btn-primary" type="submit" style="width: 100%;">GO</button>
     </form>
   </div>
 </div>
-
+<div class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header">DERIVATIVES - NEGATIVE EXPONENTS</div>
+  <div class="card-body">
+    <form action="{% url 'mc_app:skill_selection' %}" style="width: 100%;" method="POST">
+      {% csrf_token %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeExponents" value="negativeExponents" checked>
+        <label class="form-check-label" for="negativeExponents">keep it simple</label>
+        <svg id="checkSVGbasicDerivatives" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeExponentsAndCoefficients" value="negativeExponentsAndCoefficients">
+        <label class="form-check-label" for="negativeExponentsAndCoefficients">add negative coefficients</label>
+        <svg id="checkSVGnegativeCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeExponentsAndFractionalCoefficients" value="negativeExponentsAndFractionalCoefficients">
+        <label class="form-check-label" for="negativeExponentsAndFractionalCoefficients">add fractional coefficients</label>
+        <svg id="checkSVGfractionalCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeExponentsBasicMix" value="negativeExponentsBasicMix">
+        <label class="form-check-label" for="negativeExponentsBasicMix">mix it up</label>
+        <svg id="checkSVGbasicMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeExponentsAdvancedMix" value="negativeExponentsAdvancedMix">
+        <label class="form-check-label" for="negativeExponentsAdvancedMix">give me the advanced mix</label>
+        <svg id="checkSVGadvancedMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <br>
+      <button id="skillButton" class="btn btn-primary" type="submit" style="width: 100%;">GO</button>
+    </form>
+  </div>
+</div>
+<div class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header">DERIVATIVES - FRACTIONAL EXPONENTS</div>
+  <div class="card-body">
+    <form action="{% url 'mc_app:skill_selection' %}" style="width: 100%;" method="POST">
+      {% csrf_token %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalExponents" value="fractionalExponents" checked>
+        <label class="form-check-label" for="fractionalExponents">keep it simple</label>
+        <svg id="checkSVGbasicDerivatives" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalExponentsAndNegativeCoefficients" value="fractionalExponentsAndNegativeCoefficients">
+        <label class="form-check-label" for="fractionalExponentsAndNegativeCoefficients">add negative coefficients</label>
+        <svg id="checkSVGnegativeCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalExponentsAndFractionalCoefficients" value="fractionalExponentsAndFractionalCoefficients">
+        <label class="form-check-label" for="fractionalExponentsAndFractionalCoefficients">add fractional coefficients</label>
+        <svg id="checkSVGfractionalCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalExponentsBasicMix" value="fractionalExponentsBasicMix">
+        <label class="form-check-label" for="fractionalExponentsBasicMix">mix it up</label>
+        <svg id="checkSVGbasicMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="fractionalExponentsAdvancedMix" value="fractionalExponentsAdvancedMix">
+        <label class="form-check-label" for="fractionalExponentsAdvancedMix">give me the advanced mix</label>
+        <svg id="checkSVGadvancedMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <br>
+      <button id="skillButton" class="btn btn-primary" type="submit" style="width: 100%;">GO</button>
+    </form>
+  </div>
+</div>
+<div class="card mx-auto border border-dark mt-2" style="width: 80%">
+  <div class="card-header">DERIVATIVES - NEGATIVE FRACTIONAL EXPONENTS</div>
+  <div class="card-body">
+    <form action="{% url 'mc_app:skill_selection' %}" style="width: 100%;" method="POST">
+      {% csrf_token %}
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeFractionalExponents" value="negativeFractionalExponents" checked>
+        <label class="form-check-label" for="negativeFractionalExponents">keep it simple</label>
+        <svg id="checkSVGbasicDerivatives" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeFractionalExponentsAndNegativeCoefficients" value="negativeFractionalExponentsAndNegativeCoefficients">
+        <label class="form-check-label" for="negativeFractionalExponentsAndNegativeCoefficients">add negative coefficients</label>
+        <svg id="checkSVGnegativeCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeFractionalExponentsAndFractionalCoefficients" value="negativeFractionalExponentsAndFractionalCoefficients">
+        <label class="form-check-label" for="negativeFractionalExponentsAndFractionalCoefficients">add fractional coefficients</label>
+        <svg id="checkSVGfractionalCoefficients" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeFractionalExponentsBasicMix" value="negativeFractionalExponentsBasicMix">
+        <label class="form-check-label" for="negativeFractionalExponentsBasicMix">mix it up</label>
+        <svg id="checkSVGbasicMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="skillRadios" id="negativeFractionalExponentsAdvancedMix" value="negativeFractionalExponentsAdvancedMix">
+        <label class="form-check-label" for="negativeFractionalExponentsAdvancedMix">give me the advanced mix</label>
+        <svg id="checkSVGadvancedMix" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="green" class="bi bi-check-circle" viewBox="0 0 16 16" style="display: inline-block; visibility: hidden;">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+          <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+        </svg>
+      </div>
+      <br>
+      <button id="skillButton" class="btn btn-primary" type="submit" style="width: 100%;">GO</button>
+    </form>
+  </div>
+</div>
+<script>
+    var progressObj = {{progressObj|safe}};
+    var progressFields = progressObj[0].fields;
+    if (progressFields.masteredBasicDerivatives){
+      document.getElementById("checkSVGbasicDerivatives").style.visibility = "visible";
+    }
+    if (progressFields.masteredNegativeCoefficients){
+      document.getElementById("checkSVGnegativeCoefficients").style.visibility = "visible";
+    }
+    if (progressFields.masteredFractionalCoefficients){
+      document.getElementById("checkSVGfractionalCoefficients").style.visibility = "visible";
+    }
+    if (progressFields.masteredBasicMix){
+      document.getElementById("checkSVGbasicMix").style.visibility = "visible";
+    }
+    if (progressFields.masteredAdvancedMix){
+      document.getElementById("checkSVGadvancedMix").style.visibility = "visible";
+    }
+</script>
 
 {% endblock content %}
