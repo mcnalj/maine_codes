@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t6+2vf-y@+-*zu!0+_)6g6jaaww=%solac0jm^+6_frphh42%v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.mainecodes.com']
 
 
 # Application definition
@@ -87,17 +87,27 @@ WSGI_APPLICATION = 'maine_codes.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'maine_codes',
+#         'USER': 'standard_teacher_username',
+#         'PASSWORD': 'emphatic_mexico',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'maine_codes',
-        'USER': 'standard_teacher_username',
-        'PASSWORD': 'emphatic_mexico',
-        'HOST': '127.0.0.1',
+        'NAME': 'mainecodes',
+        'USER': 'mcnalj',
+        'PASSWORD': 'tec0L0te',
+        'HOST': 'mysql.mainecodes.com',
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -135,7 +145,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+#STATIC_URL = '/static/'
+STATIC_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
