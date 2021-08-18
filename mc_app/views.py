@@ -14,12 +14,6 @@ from .forms import SelectSkillsForm
 
 """Next Steps: some of the percents on the DB are hard to get"""
 """is there a way to rationalize the mastered fields on the DB to make the code easier"""
-"""Need a view progress page"""
-"""Need to allow more choices of skills"""
-"""Need to think about how the machine progresses to give you greater challenges."""
-"""Need to give UI experience for when you've mastered a topc"""
-"""Need a score/progress bar on the problems card"""
-"""Need to create a UserProgress card when the user registers"""
 """Need to style all pages associated with the USER app"""
 """Need to host with DreamHost"""
 """Need to connect Google Sign In"""
