@@ -1,13 +1,51 @@
 {% extends "mc_app/base.html" %}
+{% load static %}
 
 {% block content %}
 <h2>Create an Account</h2>
 
   <form method="post" action="{% url 'users:register' %}">
     {% csrf_token %}
-    {{ form.as_p}}
+    <div class="form-group ml-2">
+      <label for="username" class="col-form-label col-sm-4">{{form.username.label}}</label>
+      {{ form.username}}
+      <span class="help-block font-weight-light font-italic ml-3">Required. 150 characters or fewer. Use letters, digits, and @ . + - _ only.</span>
+    </div>
+    <div class="form-group ml-2">
+      <label for="first_name" class="col-form-label col-sm-4">{{form.first_name.label}}</label>
+      {{ form.first_name}}
+      <span class="help-block font-weight-light font-italic ml-3">
+      Optional.
+      </span>
+    </div>
+    <div class="form-group ml-2">
+      <label for="last_name" class="col-form-label col-sm-4">{{form.last_name.label}}</label>
+      {{ form.last_name}}
+      <span class="help-block font-weight-light font-italic ml-3">
+      Optional.
+      </span>
+    </div>
+    <div class="form-group ml-2">
+      <label for="email" class="col-form-label col-sm-4">{{form.email.label}}</label>
+      {{ form.email}}
+      <span class="help-block font-weight-light font-italic ml-3">
+      Requred. Used for password resets.
+      </span>
+    </div>
+    <div class="form-group ml-2">
+      <label for="password1" class="col-form-label col-sm-4">{{form.password1.label}}</label>
+      {{ form.password1}}
+      {{ form.password1.help_text}}
+    </div>
+    <div class="form-group ml-2">
+      <label for="password2" class="col-form-label col-sm-4">{{form.password2.label}}</label>
+      {{ form.password2}}
+      <span class="help-block font-weight-light font-italic ml-3">Confirm password.
+      </span>
+    </div>
 
-    <button name="submit">Register</button>
+
+    <button name="submit" type="submit" class="btn btn-primary" style="width: 100%;">Register</button>
     <input type="hidden" name="next" value="{% url 'mc_app:index' %}" />
   </form>
 

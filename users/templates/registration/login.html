@@ -1,5 +1,5 @@
 {% extends "mc_app/base.html" %}
-
+{% load static %}
 {% block content %}
 
   {% if form.errors %}
@@ -8,10 +8,14 @@
 
   <form method="post" action="{% url 'users:login' %}">
     {% csrf_token %}
+    <div class="form-group text-center mt-4">
     {{ form.as_p }}
+    </div>
 
-    <button name="submit">Log in</button>
+    <div class="form-group text-center mt-4">
+    <button name="submit" class="btn btn-lg btn-primary mx-auto" style="width: 80%;">Log in</button>
     <input type ="hidden" name="next" value="{% url 'mc_app:index' %}" />
+    </div>
   </form>
 
 {% endblock content %}

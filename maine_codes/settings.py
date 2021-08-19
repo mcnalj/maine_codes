@@ -24,9 +24,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-t6+2vf-y@+-*zu!0+_)6g6jaaww=%solac0jm^+6_frphh42%v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# Production setting
 DEBUG = False
+# Development setting
+#DEBUG = True
 
+# Production setting
 ALLOWED_HOSTS = ['.mainecodes.com']
+# Development setting
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -87,17 +93,19 @@ WSGI_APPLICATION = 'maine_codes.wsgi.application'
 #     }
 # }
 
+# Settings for development
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
 #         'NAME': 'maine_codes',
 #         'USER': 'standard_teacher_username',
-#         'PASSWORD': 'emphatic_mexico',
+#         'PASSWORD': 'mexico_emphatic',
 #         'HOST': '127.0.0.1',
 #         'PORT': '3306',
 #     }
 # }
 
+Settings for Production
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -145,11 +153,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# For development
 #STATIC_URL = '/static/'
 
+#This didn't work in production.
 # STATIC_URL = '/static/'
 # STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public/static/'
 
+# for Production (This is working 8/19)
 STATIC_URL = '/'
 STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public'
 
