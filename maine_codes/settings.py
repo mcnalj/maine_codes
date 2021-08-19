@@ -153,6 +153,8 @@ USE_TZ = True
 STATIC_URL = '/'
 STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public'
 
+MEDIA_URL = '/media/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
