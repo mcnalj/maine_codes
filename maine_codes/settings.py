@@ -146,8 +146,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 #STATIC_URL = '/static/'
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public/static/'
+
+# STATIC_URL = '/static/'
+# STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public/static/'
+
+STATIC_URL = '/'
+STATIC_ROOT = '/home/dh_w223p2/mainecodes.com/public'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
