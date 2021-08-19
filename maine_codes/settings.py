@@ -105,7 +105,7 @@ WSGI_APPLICATION = 'maine_codes.wsgi.application'
 #     }
 # }
 
-Settings for Production
+# Settings for Production
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
