@@ -110,8 +110,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mainecodes',
-        'USER': 'mcnalj',
-        'PASSWORD': 'tec0L0te',
+        'USER': 'standard_teacher_username',
+        'PASSWORD': 'mexico',
         'HOST': 'mysql.mainecodes.com',
         'PORT': '3306',
     }

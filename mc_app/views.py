@@ -11,6 +11,8 @@ from .models import UserProgress
 
 from .forms import SelectSkillsForm
 
+import random
+
 
 """Next Steps: some of the percents on the DB are hard to get"""
 """is there a way to rationalize the mastered fields on the DB to make the code easier"""
@@ -25,26 +27,14 @@ def index(request):
 
 @login_required
 def jsPunctuation(request):
-    print("We got back to jsPunctuation")
+    """The page for quizzes."""
     if request.method !='POST':
-        print("It's not a post")
-        test = JavaScriptPunctuation.objects.filter(topic='punctuation')
-        print("Here's the id of the first question.")
-        print(test[0].id)
         questions = serializers.serialize('json', JavaScriptPunctuation.objects.filter(topic='punctuation'))
         context = {'questions': questions}
         return render(request, 'mc_app/jsPunctuation.html', context)
-
     else:
-        print("Here is the POST DATA")
-        print("id: ")
-        print(request.POST['id'])
-        print("timesAnswered")
-        print(request.POST['timesAnswered'])
-        print("It IS a post!")
         id = request.POST['id']
         JavaScriptPunctuation.objects.filter(id=id).update(timesAnswered = request.POST['timesAnswered'], timesAnsweredCorrectly = request.POST['timesAnswered'], timesDistractor1 = request.POST['timesDistractor1'], timesDistractor2 = request.POST['timesDistractor2'], timesDistractor3 = request.POST['timesDistractor3'], timesDistractor4 = request.POST['timesDistractor4'])
-    """The page for quizzes."""
     return render(request, 'mc_app/jsPunctuation.html')
 
 @login_required
@@ -71,7 +61,7 @@ def skill_selection(request):
         return render(request, 'mc_app/derivatives.html', context )
 
 def masteredRoutine(request):
-    print("in the mastered routine")
+    """Update the database when a user has mastered a quiz."""
     if request.method != 'POST':
         print("This is not a post")
     else:
@@ -120,7 +110,6 @@ def masteredRoutine(request):
 
 def masteredMessage(request):
     """This shows a message when user has mastered a skill."""
-    print("In the masteredMessage routine.")
     if request.method != 'POST':
         print("This is not a post")
     else:
